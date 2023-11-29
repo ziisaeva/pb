@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Animal {
+    protected:
+        string name;
+        string activity;
+        int speed;
+        int jumpHeight;
+        
+    public:
+        Animal(string name, string activity, int speed, int jumpHeight) {
+            this->name = name;
+            this->activity = activity;
+            this->speed = speed;
+            this->jumpHeight = jumpHeight;
+        }
+        
+        void run() {
+            cout << name << " бежит со скоростью " << speed << " км/ч." << endl;
+        }
+        
+        void jump() {
+            cout << name << " прыгает на высоту " << jumpHeight << " м." << endl;
+        }
+        
+        void feed() {
+            cout << "Покормили " << name << "!" << endl;
+        }
+        
+        void displayInfo() {
+            cout << "Имя: " << name << endl;
+            cout << "Сфера деятельности: " << activity << endl;
+            cout << "Скорость: " << speed << " км/ч" << endl;
+            cout << "Высота прыжка: " << jumpHeight << " м" << endl;
+        }
+};
+
+int main() {
+    Animal fox("Ник", "Свободный чел", 73, 4.3);
+    Animal rabbit("Джуди", "Полицейский офицер", 33, 1);
+    Animal sloth("Флэш", "Сотрудник учреждения по оформлению документов", 2, 0.3);
+
+    fox.displayInfo();
+    rabbit.displayInfo();
+    sloth.displayInfo();
+    
+    cout << endl;
+    
+    fox.run();
+    rabbit.jump();
+    sloth.feed();
+    
+    return 0;
+}
