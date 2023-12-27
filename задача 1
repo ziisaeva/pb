@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+#include <climits> 
+
+using namespace std;
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+int maxPathSumHelper(TreeNode* root, int& maxSum) {
+    if (root == nullptr) {
+        return 0;
+    }
+    
+    int leftSum = maxPathSumHelper(root->left, maxSum);
+    int rightSum = maxPathSumHelper(root->right, maxSum);
+    
+    int pathSum = root->val + max(0, leftSum) + max(0, rightSum);
+    maxSum = max(maxSum, pathSum);
+    
+    return root->val + max(0, max(leftSum, rightSum));
+}
+
+int maxPathSum(TreeNode* root) {
+    int maxSum = INT_MIN;
+    maxPathSumHelper(root, maxSum);
+    return maxSum;
+}
+
+int main() {
+    TreeNode* root = new TreeNode(33);
+    root->left = new TreeNode(13);
+    root->right = new TreeNode(3);
+    
+    int result = maxPathSum(root);
+    cout << result << endl;
+    
+    delete root->left;
+    delete root->right;
+    delete root;
+    
+    return 0;
+}
