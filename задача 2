@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+bool findPair(vector<int>& nums, int indexDiff, int valueDiff) {
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = i + 1; j < min(i + indexDiff + 1, (int) nums.size()); j++) {
+            if (abs(nums[i] - nums[j]) <= valueDiff) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3, 1};
+    int indexDiff = 3;
+    int valueDiff = 0;
+
+    bool result = findPair(nums, indexDiff, valueDiff);
+
+    if (result) {
+        cout << "true" << endl;
+    } else {
+        cout << "false" << endl;
+    }
+
+    return 0;
+}
