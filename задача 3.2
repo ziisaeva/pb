@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class MedianFinder {
+public:
+    vector<int> counts;
+    int totalCount;
+    int outOfRangeCount;
+
+    MedianFinder() {
+        counts.resize(101, 0);
+        totalCount = 0;
+        outOfRangeCount = 0;
+    }
+
+    void addNum(int num) {
+        if (num >= 0 && num <= 100) {
+            counts[num]++;
+        } else {
+            outOfRangeCount++;
+        }
+        totalCount++;
+    }
+
+    double findMedian() {
+        int medianIndex = totalCount / 2;
+
+        int count = 0;
+        int num = 0;
+        while (count <= medianIndex) {
+            count += counts[num];
+            num++;
+        }
+
+        while (count <= medianIndex) {
+            count += outOfRangeCount;
+        }
+
+        if (totalCount % 2 == 0) {
+            if (count > medianIndex) {
+                return num - 1;
+            } else {
+                return (num - 1 + num) / 2.0;
+            }
+        } else {
+            return num - 1;
+        }
+    }
+};
+
+int main() {
+    MedianFinder medianFinder;
+
+    medianFinder.addNum(1);
+    medianFinder.addNum(2);
+    double median1 = medianFinder.findMedian(); // Ожидаемый результат: 1.5
+    medianFinder.addNum(3);
+    double median2 = medianFinder.findMedian(); // Ожидаемый результат: 2.0
+
+    cout << median1 << endl;
+    cout << median2 << endl;
+
+    return 0;
+}
