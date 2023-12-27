@@ -40,7 +40,7 @@ public:
 
 class Fox : public Animal {
 public:
-    Fox(string name, int speed, int jumpHeight) : Animal(name, "Лиса", speed, jumpHeight) {}
+    Fox(string name, string activity, int speed, int jumpHeight) : Animal(name, "Бездельник немножко", speed, jumpHeight) {}
 
     void run() {
         cout << name << " бежит быстро по полям." << endl;
@@ -58,7 +58,7 @@ public:
 int main() {
     Animal rabbit("Джуди", "Полицейский офицер", 33, 1);
     Animal sloth("Флэш", "Сотрудник учреждения по оформлению документов", 2, 0.3);
-    Fox fox("Ник", 48, 2);
+    Fox fox("Ник", "Бездельник немножко", 48, 2);
 
     rabbit.displayInfo();
     sloth.displayInfo();
